@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -24,7 +25,11 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule/*,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBMHkQflnpne4BTok7Zcw602ZS1jyNSW9o',
+      libraries: ['places']
+    })*/
   ],
   declarations: [
     AppComponent,
