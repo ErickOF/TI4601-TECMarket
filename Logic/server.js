@@ -29,6 +29,9 @@ authRoutes(router);
 const storeRoutes = require('./components/store/store.routes');
 storeRoutes(router);
 
+const neo4jRoutes = require('./components/neo4j/neo4j.routes');
+neo4jRoutes(router);
+
 router.get('/', (req, res) => {
   res.send('API TECMarket');
 });
