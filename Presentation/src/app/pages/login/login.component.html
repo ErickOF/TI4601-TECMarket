@@ -9,27 +9,41 @@
             <div class="text-center text-muted mb-4">
               <h3>Login</h3>
             </div>
-            <form role="form">
+
+            <form role="form" #f="ngForm" (ngSubmit)="login(f.valid, f.value)">
               <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                   </div>
-                  <input class="form-control" placeholder="Id" type="text">
+                  <input class="form-control" placeholder="Id" type="text" name="id" [ngModel]="login.id" required #id="ngModel">
+                </div>
+                <div>
+                  <small [hidden]="id.valid || (id.pristine && !f.submitted)" class="text-danger">
+                    ID is required
+                  </small>
                 </div>
               </div>
+
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                   </div>
-                  <input class="form-control" placeholder="Password" type="password">
+                  <input class="form-control" placeholder="Password" type="password" name="password" [ngModel]="login.password" required #password="ngModel">
+                </div>
+                <div>
+                  <small [hidden]="password.valid || (password.pristine && !f.submitted)" class="text-danger">
+                    Password is required
+                  </small>
                 </div>
               </div>
+
               <div class="text-center">
-                <button type="button" class="btn btn-primary my-4">Sign in</button>
+                <button type="submit" class="btn btn-primary my-4">Sign in</button>
               </div>
             </form>
+
             <div class="row justify-content-center">
               <a routerLink="/register"><small>Create new account</small></a>
             </div>
