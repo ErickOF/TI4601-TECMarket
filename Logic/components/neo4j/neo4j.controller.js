@@ -26,7 +26,6 @@ exports.migrateData = (req, res, next) => {
             }
             session.run(query).subscribe({
                 onNext: function (record) {
-                    //console.log(record.get('name'))
                     console.log('test')
                 },
                 onCompleted: function (data) {
@@ -77,5 +76,36 @@ function migrateDataAux(res) {
 }
 
 function migrateDataAux2(res){
-
+    User.find((err, resp) => {
+        if (err) return res.status(500).send(err);
+        if (!resp) {
+            res.send({
+                message: 'Sales empty'
+            });
+        } else {
+            console.log(resp)
+            var session = driver.session()
+            for (let i = 0; i < resp.length; i++) {
+                query = `CREATE (sale:Sale{id_sale:'${resp[i]['id_sale']}', id_store:'${resp[i]['id_store']}', id_user:'${resp[i]['id_user']}', datetime:'${resp[i]['datetime']}'})
+                MATCH (p:Client), (s:Store), (o:Sale)
+                WHERE p.user_id='${resp[i]['id_user']}' AND s.id_store='${resp[i]['id_store']}' AND o.id_sale='${resp[i]['id_sale']}'
+                CREATE (o)-[r:BOUGTH BY]->(p)
+                CREATE (o)-[r:BOUGTH IN]->(s)`
+                session.run(query).subscribe({
+                    onNext: function (record) {
+                    },
+                    onCompleted: function (data) {
+                        //session.close()
+                       //migrateDataAux2(res)
+                    },
+                    onError: function (error) {
+                        console.log(error)
+                        res.send(error)
+                    }
+                })
+            }
+            session.close()
+            
+        }
+    });
 }
