@@ -11,7 +11,7 @@ const userSchema = new Schema({
     unique: true
   },
   id_rol: {
-    type: String,
+    type: Number,
     required: true,
     trim: true,
   },
