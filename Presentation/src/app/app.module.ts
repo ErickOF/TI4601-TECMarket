@@ -14,6 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { AddComponent } from './employee/supermarket/add/add.component';
+import { ViewComponent } from './employee/supermarket/view/view.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ComponentsModule } from './components/components.module';
     AdminLayoutComponent,
     AuthLayoutComponent,
     ClientLayoutComponent,
-    EmployeeLayoutComponent
+    EmployeeLayoutComponent,
+    AddComponent,
+    ViewComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
