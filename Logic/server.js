@@ -32,6 +32,9 @@ storeRoutes(router);
 const productRoutes = require('./components/products/product.routes');
 productRoutes(router);
 
+const neo4jRoutes = require('./components/neo4j/neo4j.routes');
+neo4jRoutes(router);
+
 router.get('/', (req, res) => {
   res.send('API TECMarket');
 });
