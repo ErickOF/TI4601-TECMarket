@@ -12,4 +12,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  public register(isValid, info) {
+    if (isValid) {
+      console.log(info);
+    }
+  }
+
 }
