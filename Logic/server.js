@@ -1,7 +1,6 @@
 'use strict'
 const cors = require('cors');
 
-const authRoutes = require('./components/auth/auth.routes');
 const generalRoutes = require('./components/general/general.routes');
 
 const express = require('express');
@@ -24,10 +23,11 @@ app.use(cors()); // Accept all CORS Methods
 
 app.use('/api', router);
 
-// generalRoutes(router);
-
-
+const authRoutes = require('./components/auth/auth.routes');
 authRoutes(router);
+
+const storeRoutes = require('./components/store/store.routes');
+storeRoutes(router);
 
 router.get('/', (req, res) => {
   res.send('API TECMarket');
