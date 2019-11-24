@@ -27,7 +27,9 @@ export const CLIENT: RouteInfo[] = [
 ];
 
 export const EMPLOYEE: RouteInfo[] = [
-  { path: '', title: '', icon: '', class: '' }
+  { path: '/icons', title: 'Add Supermarket', icon: 'ni-shop text-blue', class: '' },
+  { path: '/icons', title: 'View Supermarkets', icon: 'ni-shop text-yellow', class: '' },
+  { path: '/icons', title: 'Search Client', icon: 'ni-single-02 text-green', class: '' }
 ];
 
 @Component({

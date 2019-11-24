@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/client');
       } else if (info.id === this.employee.username && info.password === this.employee.password) {
         localStorage.setItem('user-info', JSON.stringify(this.employee));
-        console.log('Employe');
+        this.router.navigateByUrl('/employee');
       } else {
         this.showMsg('Login Error!', 'Invalid username or password', 'error');
       }
