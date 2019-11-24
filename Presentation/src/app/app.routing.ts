@@ -8,7 +8,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 
 
-const routes: Routes =[
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
@@ -54,7 +54,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
       useHash: true
     })
   ],

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 
@@ -10,27 +10,40 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private client = {
-    id: 'CErickOF',
-    password: '1234'
+    username: 'CErickOF',
+    name: 'Erick Obregon',
+    id: 3050709876,
+    phone: 87134265,
+    birthday: '1998-01-31',
+    email: 'erickobregonf@gmail.com',
+    password: '1234',
+    rol: 'client'
   };
+
   private employee = {
-    id: 'EErickOF',
-    password: '1234'
+    username: 'EErickOF',
+    name: 'Erick Obregon',
+    id: 3050709876,
+    phone: 87134265,
+    birthday: '1998-01-31',
+    email: 'erickobregonf@gmail.com',
+    password: '1234',
+    rol: 'employee'
   };
 
-  constructor() {}
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() { }
 
   public login(isValid, info) {
     if (isValid) {
-      if (info.id === this.client.id && info.password === this.client.password) {
-        console.log('Client');
-      } else if (info.id === this.employee.id && info.password === this.employee.password) {
+      if (info.id === this.client.username && info.password === this.client.password) {
+        localStorage.setItem('user-info', JSON.stringify(this.client));
+        this.router.navigateByUrl('/client');
+      } else if (info.id === this.employee.username && info.password === this.employee.password) {
+        localStorage.setItem('user-info', JSON.stringify(this.employee));
         console.log('Employe');
       } else {
         this.showMsg('Login Error!', 'Invalid username or password', 'error');
