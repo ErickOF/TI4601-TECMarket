@@ -3,40 +3,30 @@ const Schema = mongoose.Schema;
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
-const userSchema = new Schema({
-  user_id: {
+const storeSchema = new Schema({
+  id_store: {
     type: String,
     required: true,
     trim: true,
     unique: true
   },
-  id_rol: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    trim: true
-  },
   name: {
     type: String,
     trim: true
   },
-  username: {
+  description: {
     type: String,
     trim: true
   },
-  birth: {
+  address: {
     type: String,
     trim: true
   },
-  phone: {
-    type: Array,
+  lat: {
+    type: String,
     trim: true
   }, 
-  email: {
+  long: {
     type: String,
     trim: true
   },
@@ -44,4 +34,4 @@ const userSchema = new Schema({
   timestamps: true
 });
 
-module.exports = userSchema;
+module.exports = storeSchema;
