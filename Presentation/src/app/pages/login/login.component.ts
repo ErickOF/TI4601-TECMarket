@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     birthday: '1998-01-31',
     email: 'erickobregonf@gmail.com',
     password: '1234',
+    img: 'assets/img/theme/profile1.jpg',
     rol: 'client'
   };
 
