@@ -7,7 +7,13 @@ exports.createStore = (req, res, next) => {
     description: req.body.description,
     address: req.body.address,
     lat: req.body.lat,
-    long: req.body.long
+    long: req.body.long,
+    img: req.body.img,
+    phone: req.body.phone,
+    rating: req.body.rating,
+    schedule: req.body.schedule,
+    website: req.body.website,
+    products: req.body.products
   }
 
   Store.create(newStore, (err, user) => {
@@ -24,7 +30,6 @@ exports.createStore = (req, res, next) => {
   });
 }
 
-/* Read Admin User */
 exports.readStore = (req, res, next) => {
   const storeData = {
     id_store: req.params.id_store
@@ -38,16 +43,24 @@ exports.readStore = (req, res, next) => {
         message: 'Id Store does not exists'
       });
     } else {
-      const jsonResponse = {
-        name: resp.name,
-        description: resp.description,
-        id_store: resp.id_store,
-        address: resp.address,
-        lat: resp.lat,
-        long: resp.long
-      }
       res.send({
-        jsonResponse
+        data: resp
+      });
+    }
+  });
+}
+
+/* Read Admin User */
+exports.readStoreAll = (req, res, next) => {
+  Store.find((err, resp) => {
+    if (err) return res.status(500).send(err);
+    if (!resp) {
+      res.send({
+        message: 'Id Store does not exists'
+      });
+    } else {
+      res.send({
+        data: resp
       });
     }
   });
@@ -69,4 +82,52 @@ exports.deleteStore = (req, res) => {
       jsonResponse
     });
   });
+}
+
+exports.addProduct = (req, res) => {
+  const newproduct = {
+    product_code: req.body.product_code,
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    photo: req.body.photo
+  }
+  const newStore = {
+    id_store: req.param.id_store
+  }
+  Store.findOneAndUpdate(
+    { id_store: req.params.id_store },
+    { $push: { products: newproduct } },
+    (err, resp) => {
+      if (err == null && resp == null) return res.send({
+        message: 'Id Store does not exists'
+      });
+      if (err) return res.status(500).send(err);
+      const jsonResponse = {
+        m_delete: 'Product added'
+      }
+      res.send({
+        jsonResponse
+      });
+    }
+  );
+}
+
+exports.deleteProduct = (req, res) => {
+  Store.findOneAndUpdate(
+    { id_store: req.params.id_store },
+    { $pull: { products: {product_code: req.body.product_code} } },
+    (err, resp) => {
+      if (err == null && resp == null) return res.send({
+        message: 'Id Store does not exists'
+      });
+      if (err) return res.status(500).send(err);
+      const jsonResponse = {
+        m_delete: 'Product deleted'
+      }
+      res.send({
+        jsonResponse
+      });
+    }
+  );
 }

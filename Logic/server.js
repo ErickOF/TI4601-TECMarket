@@ -29,6 +29,9 @@ authRoutes(router);
 const storeRoutes = require('./components/store/store.routes');
 storeRoutes(router);
 
+const productRoutes = require('./components/products/product.routes');
+productRoutes(router);
+
 router.get('/', (req, res) => {
   res.send('API TECMarket');
 });
