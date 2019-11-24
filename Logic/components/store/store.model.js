@@ -6,9 +6,7 @@ mongoose.set('useFindAndModify', false);
 const productSchema = new Schema({
   product_code: {
     type: String,
-    required: true,
     trim: true,
-    unique: true
   },
   name: {
     type: String,
