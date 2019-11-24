@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { ClientLayoutRoutes } from './client-layout.routing';
+
+import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -13,6 +16,7 @@ import { ClientLayoutRoutes } from './client-layout.routing';
     ReactiveFormsModule
   ],
   declarations: [
+    UserProfileComponent
   ]
 })
 export class ClientLayoutModule { }
