@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClientLayoutRoutes } from './client-layout.routing';
 
+import { ViewComponent } from './../../clients/supermarkets/view/view.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 
 
@@ -16,7 +17,8 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
     ReactiveFormsModule
   ],
   declarations: [
-    UserProfileComponent
+    UserProfileComponent,
+    ViewComponent
   ]
 })
 export class ClientLayoutModule { }
