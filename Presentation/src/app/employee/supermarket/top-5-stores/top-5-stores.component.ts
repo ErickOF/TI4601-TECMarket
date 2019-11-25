@@ -44,7 +44,6 @@ export class Top5StoresComponent implements OnInit, AfterViewInit {
     const response = this.storeService.getTop5();
     response.subscribe((data) => {
       this.supermarkets = data.data;
-      console.log(data);
     });
   }
 }

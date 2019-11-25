@@ -36,4 +36,8 @@ export class StoreService {
   public getTop5() {
     return this.http.get<any>(Constants.url + Constants.getTop5, this.httpOptions);
   }
+
+  public getUserSales(user) {
+    return this.http.get<any>(Constants.url + Constants.getUserSales + user, this.httpOptions);
+  }
 }

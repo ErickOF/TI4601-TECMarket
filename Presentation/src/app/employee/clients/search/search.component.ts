@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
+import { StoreService } from './../../../services/store/store.service';
+
 
 declare var $: any;
 
@@ -16,10 +18,25 @@ declare interface DataTable {
 })
 export class SearchComponent implements OnInit, AfterViewInit {
   public sales;
+  public clients;
   public table: DataTable;
+  public ready = false;
 
-  constructor() {
-    this.createTable();
+  constructor(private storeService: StoreService) {
+    this.clients = [
+      {
+        user_id: '123456789',
+        name: 'Pato Test User'
+      },
+      {
+        user_id: 'fofo123',
+        name: 'Rodolfo Solano'
+      },
+      {
+        user_id: '305070987',
+        name: 'Erick Andrés Obregón Fonseca'
+      },
+    ];
   }
 
   ngOnInit() { }
@@ -39,61 +56,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createTable() {
-    this.sales = [/*
-      {
-        id_sale: 'Sale006',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale007',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale008',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale010',
-        store: 'Store_NOSALES',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale003',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale004',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      },
-      {
-        id_sale: 'Sale005',
-        store: 'Store001',
-        date: '2019-01-01 12:00:00'
-      }*/
-      /*
-      {
-        store: 'Store test pato',
-        sales: 1
-      },
-      {
-        store: 'Store test foto',
-        sales: 7
-      }*/
-      {
-        user_id: '123456789',
-        name: 'Pato Test User'
-      },
-      {
-        user_id: 'fofo123',
-        name: 'Rodolfo Solano'
-      }
-    ];
+  public selectClient(user) {
+    this.ready = false;
+    const response = this.storeService.getUserSales(user);
+    response.subscribe((data) => {
+      this.sales = data.data;
+      this.ready = true;
+    }, (error) => {
+      this.showMsg('Connection Error!', 'Try it later!', 'error');
+    });
   }
 
   private showMsg(msgTitle, msg, type) {

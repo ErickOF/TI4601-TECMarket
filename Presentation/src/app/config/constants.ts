@@ -7,4 +7,5 @@ export class Constants {
     public static deleteStore = 'store/';
     public static allStoresWSales = 'getStoreWithSales';
     public static getTop5 = 'getTopFive';
+    public static getUserSales = 'getUsersSales/';
 }
