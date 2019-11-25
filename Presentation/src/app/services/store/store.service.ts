@@ -21,6 +21,10 @@ export class StoreService {
     return this.http.post<any>(Constants.url + Constants.createStore, store, this.httpOptions);
   }
 
+  public deleteStore(store) {
+    return this.http.delete<any>(Constants.url + Constants.deleteStore + store, this.httpOptions);
+  }
+
   public getAllStores() {
     return this.http.get<any>(Constants.url + Constants.allStores, this.httpOptions);
   }

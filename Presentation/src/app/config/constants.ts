@@ -4,4 +4,5 @@ export class Constants {
     public static createClient = 'register';
     public static allStores = 'storeall';
     public static createStore = 'store';
+    public static deleteStore = 'store/';
 }

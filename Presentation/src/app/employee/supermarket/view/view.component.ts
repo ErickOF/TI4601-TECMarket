@@ -20,6 +20,7 @@ declare interface DataTable {
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit, AfterViewInit {
+  public isDataReady = false;
   public supermarkets: Store[];
   public table: DataTable;
 
@@ -46,17 +47,31 @@ export class ViewComponent implements OnInit, AfterViewInit {
   }
 
   private createTable() {
+    this.isDataReady = false;
     const response = this.storeService.getAllStores();
     response.subscribe((data) => {
       this.supermarkets = data.data;
+      this.isDataReady = true;
     });
   }
 
-  public delete(row) {
-    this.showMsg('Success!', 'Store was deleted', 'success');
+  public delete(supermarket) {
+    const response = this.storeService.deleteStore(supermarket.id_store);
+    response.subscribe((data) => {
+      if (data.jsonResponse) {
+        this.showMsg('Success!', 'Store was added', 'success');
+        this.createTable();
+        this.router.navigateByUrl('/employee/view-supermarkets');
+      } else {
+        this.showMsg('Error!', 'Unknown error.', 'error');
+      }
+    }, (error) => {
+      this.showMsg('Connection Error!', 'Try it later!', 'error');
+    });
   }
 
-  public edit(row) {
+  public edit(supermarket) {
+    localStorage.setItem('edit-store', JSON.stringify(supermarket));
     this.router.navigateByUrl('/employee/edit-supermarket');
   }
 
