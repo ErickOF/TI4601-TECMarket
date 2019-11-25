@@ -41,9 +41,10 @@ export class StoreWPurchasesComponent implements OnInit, AfterViewInit {
   }
 
   private createTable() {
-    const response = this.storeService.getAllStores();
+    const response = this.storeService.getAllStoresWSales();
     response.subscribe((data) => {
-      this.supermarkets = data.data;
+      this.supermarkets = data;
+      console.log(this.supermarkets)
     });
   }
 }

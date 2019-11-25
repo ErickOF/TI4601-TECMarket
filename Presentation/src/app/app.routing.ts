@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+        loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
   },
@@ -31,7 +31,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/client-layout/client-layout.module#ClientLayoutModule'
+        loadChildren: () => import('./layouts/client-layout/client-layout.module').then(m => m.ClientLayoutModule)
       }
     ]
   },
@@ -41,7 +41,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/employee-layout/employee-layout.module#EmployeeLayoutModule'
+        loadChildren: () => import('./layouts/employee-layout/employee-layout.module').then(m => m.EmployeeLayoutModule)
       }
     ]
   },
@@ -51,7 +51,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+        loadChildren: () => import('./layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
   },

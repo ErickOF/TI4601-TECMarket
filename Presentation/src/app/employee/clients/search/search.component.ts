@@ -23,20 +23,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public ready = false;
 
   constructor(private storeService: StoreService) {
-    this.clients = [
-      {
-        user_id: '123456789',
-        name: 'Pato Test User'
-      },
-      {
-        user_id: 'fofo123',
-        name: 'Rodolfo Solano'
-      },
-      {
-        user_id: '305070987',
-        name: 'Erick Andrés Obregón Fonseca'
-      },
-    ];
+    const response = this.storeService.getAllUsers();
+    response.subscribe((data) => {
+      console.log(data)
+      this.clients = data;
+    }, (error) => {
+      this.showMsg('Connection Error!', 'Try it later!', 'error');
+    });
   }
 
   ngOnInit() { }
@@ -60,7 +53,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.ready = false;
     const response = this.storeService.getUserSales(user);
     response.subscribe((data) => {
-      this.sales = data.data;
+      console.log(data)
+      this.sales = data;
       this.ready = true;
     }, (error) => {
       this.showMsg('Connection Error!', 'Try it later!', 'error');
