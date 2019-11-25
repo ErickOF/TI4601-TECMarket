@@ -18,23 +18,11 @@
             <thead class="thead-light">
               <tr>
                 <th class="text-center">ID Store</th>
-                <th class="text-center">Local name</th>
-                <th class="text-center">Phone number</th>
-                <th class="text-center">Schedule</th>
-                <th class="text-center">Website</th>
-                <th class="text-center">Latitude</th>
-                <th class="text-center">Longitude</th>
               </tr>
             </thead>
             <tbody>
               <tr class="text-align-center-center" *ngFor="let supermarket of supermarkets">
-                <td class="text-center">{{ supermarket.id_store}}</td>
-                <td class="text-center">{{ supermarket.name}}</td>
-                <td class="text-center">{{ supermarket.phone}}</td>
-                <td class="text-center">{{ supermarket.schedule}}</td>
-                <td class="text-center">{{ supermarket.website}}</td>
-                <td class="text-center">{{ supermarket.lat}}</td>
-                <td class="text-center">{{ supermarket.long}}</td>
+                <td class="text-center">{{ supermarket}}</td>
               </tr>
             </tbody>
           </table>

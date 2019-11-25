@@ -44,4 +44,8 @@ export class StoreService {
   public getSimilarClients(user) {
     return this.http.get<any>(Constants.url + Constants.getSimilarClients + user, this.httpOptions);
   }
+
+  public getAllUsers(){
+    return this.http.get<any>(Constants.url + 'getAllUsers', this.httpOptions);
+  }
 }

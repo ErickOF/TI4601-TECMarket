@@ -39,11 +39,21 @@ export class Top5StoresComponent implements OnInit, AfterViewInit {
       },
     });
   }
+  public sortByProperty = function (property) {
+    return function (x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] < y[property]) ? 1 : -1));
+    };
+}
 
   private createTable() {
     const response = this.storeService.getTop5();
     response.subscribe((data) => {
-      this.supermarkets = data.data;
+      
+      this.supermarkets = data;
+      this.supermarkets.sort(this.sortByProperty('sales'))
+      console.log(this.supermarkets)
     });
   }
+
+  
 }
