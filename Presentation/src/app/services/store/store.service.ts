@@ -28,4 +28,7 @@ export class StoreService {
   public getAllStores() {
     return this.http.get<any>(Constants.url + Constants.allStores, this.httpOptions);
   }
+  public getAllStoresWSales() {
+    return this.http.get<any>(Constants.url + Constants.allStoresWSales, this.httpOptions);
+  }
 }

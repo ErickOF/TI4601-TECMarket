@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+
+import { StoreService } from './../../../services/store/store.service';
+
 
 declare var $: any;
-
 
 declare interface DataTable {
   headerRow: string[];
@@ -19,7 +19,7 @@ export class StoreWPurchasesComponent implements OnInit, AfterViewInit {
   public supermarkets: any[];
   public table: DataTable;
 
-  constructor(private router: Router) {
+  constructor(private storeService: StoreService) {
     this.createTable();
   }
 
@@ -41,6 +41,9 @@ export class StoreWPurchasesComponent implements OnInit, AfterViewInit {
   }
 
   private createTable() {
-    this.supermarkets = ['STORE_NOSALES', 'Store001'];
+    const response = this.storeService.getAllStores();
+    response.subscribe((data) => {
+      this.supermarkets = data.data;
+    });
   }
 }
