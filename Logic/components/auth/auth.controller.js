@@ -67,7 +67,7 @@ exports.loginUser = (req, res, next) => {
           rol: user.id_rol,
           username: user.username,
           name: user.name,
-          birth: user.birth,
+          birthday: user.birth,
           email: user.email,
           id: user.user_id,
           phone: user.phone,

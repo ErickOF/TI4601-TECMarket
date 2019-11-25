@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class UserProfileComponent implements OnInit {
   public userinfo;
-  public defaultAvatar = 'assets/img/theme/avatar.png';
+  public avatar = 'assets/img/theme/avatar.png';
 
   constructor() {
     this.userinfo = JSON.parse(localStorage.getItem('user-info'));
