@@ -6,4 +6,5 @@ module.exports = (router) => {
   router.delete('/sales/:id_sale', Sales.deleteSale);
   router.get('/sales/:id_sale', Sales.readSale);
   router.get('/sales', Sales.readSaleAll);
+  router.get('/salesbyUser/:id_user', Sales.readSaleUser);
 }
