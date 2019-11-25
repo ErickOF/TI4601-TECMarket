@@ -169,6 +169,7 @@ exports.getTopFive = (req, res, next) => {
                     }
                     )
             }
+            session1.close()
 
         })
         .catch(function (error) {
