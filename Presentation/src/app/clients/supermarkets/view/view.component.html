@@ -24,7 +24,6 @@
                 <th class="text-center">Website</th>
                 <th class="text-center">Latitude</th>
                 <th class="text-center">Longitude</th>
-                <th class="text-center">Actions</th>
               </tr>
             </thead>
             <tbody *ngIf="isDataReady">
@@ -36,10 +35,6 @@
                 <td class="text-center">{{ supermarket.website}}</td>
                 <td class="text-center">{{ supermarket.lat}}</td>
                 <td class="text-center">{{ supermarket.long}}</td>
-                <td class="text-center">
-                  <button class="btn btn-link btn-icon btn-sm edit" (click)="edit(supermarket)"><i class="fa fa-edit"></i></button>
-                  <button class="btn btn-link btn-icon btn-sm remove" (click)="delete(supermarket)"><i class="fa fa-times"></i></button>
-                </td>
               </tr>
             </tbody>
           </table>

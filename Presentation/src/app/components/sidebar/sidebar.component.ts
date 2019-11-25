@@ -20,8 +20,8 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 export const CLIENT: RouteInfo[] = [
-  { path: '/icons', title: 'Buy', icon: 'ni-cart text-blue', class: '' },
-  { path: '/icons', title: 'Purchase History', icon: 'ni-bullet-list-67 text-orange', class: '' },
+  { path: '/client/buy', title: 'Buy', icon: 'ni-cart text-blue', class: '' },
+  { path: '/client/purchase-history', title: 'Purchase History', icon: 'ni-bullet-list-67 text-orange', class: '' },
   { path: '/client/view-supermarkets', title: 'View Stores', icon: 'ni-shop text-yellow', class: '' },
   { path: '/client/user-profile', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' }
 ];

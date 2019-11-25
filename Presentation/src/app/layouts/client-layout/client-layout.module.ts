@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClientLayoutRoutes } from './client-layout.routing';
-
+import { BuyComponent } from './../../clients/buy/buy.component';
+import { PurchaseHistoryComponent } from './../../clients/purchase-history/purchase-history.component';
 import { ViewComponent } from './../../clients/supermarkets/view/view.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 
@@ -18,6 +19,8 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
   ],
   declarations: [
     UserProfileComponent,
+    BuyComponent,
+    PurchaseHistoryComponent,
     ViewComponent
   ]
 })
