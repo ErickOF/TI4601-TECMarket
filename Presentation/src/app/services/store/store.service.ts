@@ -40,4 +40,8 @@ export class StoreService {
   public getUserSales(user) {
     return this.http.get<any>(Constants.url + Constants.getUserSales + user, this.httpOptions);
   }
+
+  public getSimilarClients(user) {
+    return this.http.get<any>(Constants.url + Constants.getSimilarClients + user, this.httpOptions);
+  }
 }

@@ -8,4 +8,5 @@ export class Constants {
     public static allStoresWSales = 'getStoreWithSales';
     public static getTop5 = 'getTopFive';
     public static getUserSales = 'getUsersSales/';
+    public static getSimilarClients = 'getSimilarPeople/';
 }

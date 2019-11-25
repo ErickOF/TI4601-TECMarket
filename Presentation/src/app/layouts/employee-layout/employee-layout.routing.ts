@@ -7,6 +7,7 @@ import { ViewComponent } from './../../employee/supermarket/view/view.component'
 import { Top5StoresComponent } from './../../employee/supermarket/top-5-stores/top-5-stores.component';
 
 import { SearchComponent } from './../../employee/clients/search/search.component';
+import { SimilarClientsComponent } from './../../employee/clients/similar-clients/similar-clients.component';
 
 
 export const EmployeeLayoutRoutes: Routes = [
@@ -38,5 +39,9 @@ export const EmployeeLayoutRoutes: Routes = [
     {
         path: 'search-client',
         component: SearchComponent
+    },
+    {
+        path: 'similar-clients',
+        component: SimilarClientsComponent
     }
 ];
