@@ -9,6 +9,7 @@ import { EmployeeLayoutRoutes } from './employee-layout.routing';
 import { AddComponent } from './../../employee/supermarket/add/add.component';
 import { EditComponent } from './../../employee/supermarket/edit/edit.component';
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
+import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-purchases/stores-w-purchases.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ViewComponent } from './../../employee/supermarket/view/view.component'
   declarations: [
     AddComponent,
     EditComponent,
+    StoreWPurchasesComponent,
     ViewComponent
   ]
 })

@@ -22,14 +22,15 @@ export const ROUTES: RouteInfo[] = [
 export const CLIENT: RouteInfo[] = [
   { path: '/icons', title: 'Buy', icon: 'ni-cart text-blue', class: '' },
   { path: '/icons', title: 'Purchase History', icon: 'ni-bullet-list-67 text-orange', class: '' },
-  { path: '/icons', title: 'Supermarkets', icon: 'ni-shop text-blue', class: '' },
+  { path: '/icons', title: 'Stores', icon: 'ni-shop text-blue', class: '' },
   { path: '/client/user-profile', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' }
 ];
 
 export const EMPLOYEE: RouteInfo[] = [
-  { path: '/employee/add-supermarket', title: 'Add Supermarket', icon: 'ni-shop text-blue', class: '' },
-  { path: '/employee/view-supermarkets', title: 'View Supermarkets', icon: 'ni-shop text-yellow', class: '' },
-  { path: '/icons', title: 'Search Client', icon: 'ni-single-02 text-green', class: '' }
+  { path: '/employee/add-supermarket', title: 'Add Store', icon: 'ni-shop text-blue', class: '' },
+  { path: '/employee/view-supermarkets', title: 'View Stores', icon: 'ni-shop text-yellow', class: '' },
+  { path: '/employee/stores-w-sales', title: 'Search Client', icon: 'ni-single-02 text-green', class: '' },
+  { path: '/employee/stores-w-sales', title: 'Stores with sales', icon: 'ni-single-02 text-green', class: '' }
 ];
 
 @Component({
