@@ -27,10 +27,10 @@ exports.migrateData = (req, res, next) => {
             }
             session.run(query).subscribe({
                 onNext: function (record) {
-                    console.log('test')
+                    //console.log('test')
                 },
                 onCompleted: function (data) {
-                    console.log(data)
+                    //console.log(data)
                     session.close()
                     migrateDataAux(res)
                 },
@@ -51,7 +51,7 @@ function migrateDataAux(res) {
                 message: 'Clients empty'
             });
         } else {
-            console.log(resp)
+            //console.log(resp)
             var session = driver.session()
             var query = 'CREATE '
             for (let i = 0; i < resp.length; i++) {
@@ -84,15 +84,15 @@ function migrateDataAux2(res) {
                 message: 'Sales empty'
             });
         } else {
-            console.log(resp)
+            //console.log(resp)
             var session = driver.session()
             for (let i = 0; i < resp.length; i++) {
                 query = `CREATE (sale:Sale{id_sale:'${resp[i]['id_sale']}', id_store:'${resp[i]['id_store']}', id_user:'${resp[i]['id_user']}', datetime:'${resp[i]['datetime']}'}) \n
                 WITH sale \n
                 MATCH (p:Client), (s:Store) \n
                 WHERE p.user_id='${resp[i]['id_user']}' AND s.id_store='${resp[i]['id_store']}' AND sale.id_sale='${resp[i]['id_sale']}' \n
-                CREATE (sale)<-[r:BOUGHT_BY]-(p) \n
-                CREATE (sale)<-[r1:BOUGHT_IN]-(s)`
+                CREATE (sale)-[r:BOUGHT_BY]->(p) \n
+                CREATE (sale)-[r1:BOUGHT_IN]->(s)`
                 session.run(query).subscribe({
                     onNext: function (record) {
                     },
@@ -115,64 +115,91 @@ exports.getUsersSales = (req, res, next) => {
     var session = driver.session()
     let query = `MATCH (a:Sale{id_user:'${req.params.id_user}'})
     RETURN a.id_sale, a.id_store, a.datetime`
-    let fData = []
-    session.run(query)
-        .then(function (result) {
-            res.send(result['records'])
-            session.close();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    let ress = []
+    session.run(query).subscribe({
+        onNext: function (record) {
+            var d={
+                id_sale:record['_fields'][0],
+                store:record['_fields'][1],
+                date:record['_fields'][2]
+            }
+            ress.push(d);
+        },
+        onCompleted: function (data) {
+            session.close()
+            res.send(ress)
+        },
+        onError: function (error) {
+            console.log(error)
+            res.send(error)
+        }
+    })
 }
 
 exports.getStoresWithSales = (req, res, next) => {
     var session = driver.session()
-    // let query =`MATCH friendships=(Store)<-[:BOUGHT_IN]-(Client)
-    // RETURN friendships`
-    let query = `match (n:Store)-[:BOUGHT_IN]->(Sale) return distinct n.id_store`
-    session.run(query)
-        .then(function (result) {
-            res.send(result['records'])
-            session.close();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    let query = `match (n:Store)<-[:BOUGHT_IN]-(Sale) return distinct n.id_store`
+    let ress=[];
+    session.run(query).subscribe({
+        onNext: function (record) {
+            ress.push(record['_fields'][0]);
+        },
+        onCompleted: function (data) {
+            session.close()
+            res.send(ress)
+        },
+        onError: function (error) {
+            console.log(error)
+            res.send(error)
+        }
+    })
 }
 
 exports.getTopFive = (req, res, next) => {
     var session = driver.session()
-    // let query =`MATCH friendships=(Store)<-[:BOUGHT_IN]-(Client)
-    // RETURN friendships`
-    let query = `match (n:Store) return n.id_store`
+    let query = `MATCH (s:Sale)-[:BOUGHT_IN]->(st:Store)
+    RETURN st.name as store, size(collect(s.id_sale)) AS sales`
     let ress = [];
-    session.run(query)
-        .then(function (result) {
-            //res.send(result['records'])
-            session.close();
-            ress = result['records'];
-            var session1 = driver.session()
-            let results = []
-            for (let i = 0; i < ress.length; i++) {
-                session1.run(`MATCH (n:Store)-[r:BOUGHT_IN]->() WHERE n.id_store = '${ress[i]["_fields"][0]}' RETURN COUNT(r) as Count, n.id_store`)
-                    .then(function (result) {
-                        let data = {
-                            id_store: ress[i]["_fields"][0],
-                            quantity: result['records'][0]['_fields'][0]['low']
-                        }
-                        results.push(data)
-                        if (i == ress.length - 1) {
-                            res.send(results)
-                        }
-                        console.log(results)
-                    }
-                    )
+    session.run(query).subscribe({
+        onNext: function (record) {
+            var d={
+                store:record['_fields'][0],
+                sales:record['_fields'][1]['low']
             }
-            session1.close()
+            ress.push(d);
+        },
+        onCompleted: function (data) {
+            session.close()
+            res.send(ress)
+        },
+        onError: function (error) {
+            console.log(error)
+            res.send(error)
+        }
+    })
+}
 
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+exports.getSimilarPeople = (req, res, next) => {
+    var session = driver.session()
+    let query = `MATCH (p:Client)<-[r:BOUGHT_BY]-(:Sale)-[:BOUGHT_IN]->(place:Store)
+    WHERE exists((place)<-[:BOUGHT_IN]-(:Sale)-[:BOUGHT_BY]->(:Client{user_id:'${req.params.id_user}'}))
+    RETURN distinct p.name, p.user_id`
+    let ress = [];
+    session.run(query).subscribe({
+        onNext: function (record) {
+            let d={
+                name:record['_fields'][0],
+                user_id:record['_fields'][1]
+            }
+            ress.push(d);
+        },
+        onCompleted: function (data) {
+            session.close()
+            res.send(ress)
+        },
+        onError: function (error) {
+            console.log(error)
+            res.send(error)
+        }
+    })
 }

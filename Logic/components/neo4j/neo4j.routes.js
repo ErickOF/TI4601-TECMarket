@@ -6,4 +6,5 @@ module.exports = (router) => {
   router.get('/getUsersSales/:id_user', Neo4j.getUsersSales);
   router.get('/getStoresWithSales/', Neo4j.getStoresWithSales);
   router.get('/getTopFive/', Neo4j.getTopFive);
+  router.get('/getSimilarPeople/:id_user', Neo4j.getSimilarPeople);
 }
