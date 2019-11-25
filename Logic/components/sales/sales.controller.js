@@ -45,6 +45,27 @@ exports.readSale = (req, res, next) => {
 }
 
 /* Read Admin User */
+exports.readSaleUser = (req, res, next) => {
+  const userData = {
+    id_user: req.params.id_user
+  }
+  Sales.find({
+    id_user: userData.id_user
+  }, (err, resp) => {
+    if (err) return res.status(500).send('Server error!');
+    if (!resp) {
+      res.send({
+        message: 'Id sale does not exists'
+      });
+    } else {
+      res.send({
+        resp
+      });
+    }
+  });
+}
+
+/* Read Admin User */
 exports.readSaleAll = (req, res, next) => {
   Sales.find((err, resp) => {
     if (err) return res.status(500).send('Server error!');

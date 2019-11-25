@@ -38,6 +38,9 @@ neo4jRoutes(router);
 const salesRoutes = require('./components/sales/sales.routes');
 salesRoutes(router);
 
+const sitesRoutes = require('./components/sites/site.routes');
+sitesRoutes(router);
+
 router.get('/', (req, res) => {
   res.send('API TECMarket');
 });
