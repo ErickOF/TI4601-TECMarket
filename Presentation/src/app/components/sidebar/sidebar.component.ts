@@ -30,7 +30,8 @@ export const EMPLOYEE: RouteInfo[] = [
   { path: '/employee/add-supermarket', title: 'Add Store', icon: 'ni-shop text-blue', class: '' },
   { path: '/employee/view-supermarkets', title: 'View Stores', icon: 'ni-shop text-yellow', class: '' },
   { path: '/employee/stores-w-sales', title: 'Stores with sales', icon: 'ni-shop text-green', class: '' },
-  { path: '/employee/search-client', title: 'Search Client', icon: 'ni-single-02 text-yellow', class: '' }
+  { path: '/employee/top5-stores', title: 'Top 5 Stores', icon: 'ni-trophy text-yellow', class: '' },
+  { path: '/employee/search-client', title: 'Search Client', icon: 'ni-single-02 text-orange', class: '' }
 ];
 
 @Component({

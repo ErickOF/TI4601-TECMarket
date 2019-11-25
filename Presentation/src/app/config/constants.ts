@@ -6,4 +6,5 @@ export class Constants {
     public static createStore = 'store';
     public static deleteStore = 'store/';
     public static allStoresWSales = 'getStoreWithSales';
+    public static getTop5 = 'getTopFive';
 }

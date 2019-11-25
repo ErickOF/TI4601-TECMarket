@@ -10,6 +10,7 @@ import { AddComponent } from './../../employee/supermarket/add/add.component';
 import { EditComponent } from './../../employee/supermarket/edit/edit.component';
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
 import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-purchases/stores-w-purchases.component';
+import { Top5StoresComponent } from './../../employee/supermarket/top-5-stores/top-5-stores.component';
 
 import { SearchComponent } from './../../employee/clients/search/search.component';
 
@@ -27,7 +28,8 @@ import { SearchComponent } from './../../employee/clients/search/search.componen
     EditComponent,
     StoreWPurchasesComponent,
     ViewComponent,
-    SearchComponent
+    SearchComponent,
+    Top5StoresComponent
   ]
 })
 export class EmployeeLayoutModule { }

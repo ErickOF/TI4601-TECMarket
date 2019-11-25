@@ -4,6 +4,7 @@ import { AddComponent } from './../../employee/supermarket/add/add.component';
 import { EditComponent } from './../../employee/supermarket/edit/edit.component';
 import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-purchases/stores-w-purchases.component';
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
+import { Top5StoresComponent } from './../../employee/supermarket/top-5-stores/top-5-stores.component';
 
 import { SearchComponent } from './../../employee/clients/search/search.component';
 
@@ -21,6 +22,10 @@ export const EmployeeLayoutRoutes: Routes = [
     {
         path: 'stores-w-sales',
         component: StoreWPurchasesComponent
+    },
+    {
+        path: 'top5-stores',
+        component: Top5StoresComponent
     },
     {
         path: 'add-supermarket',
