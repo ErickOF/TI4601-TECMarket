@@ -64,11 +64,17 @@ exports.loginUser = (req, res, next) => {
           expiresIn: expiresIn
         });
         const jsonResponse = {
-          rol: user.rol,
+          rol: user.id_rol,
           username: user.username,
+          name: user.name,
+          birth: user.birth,
+          email: user.email,
+          id: user.user_id,
+          phone: user.phone,
           accessToken: accessToken,
           expiresIn: expiresIn
-        }
+        };
+
         res.send({
           jsonResponse
         });

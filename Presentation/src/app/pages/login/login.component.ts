@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+import { AuthService } from './../../services/auth/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     rol: 'employee'
   };
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() { }
 
@@ -40,15 +43,27 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public login(isValid, info) {
     if (isValid) {
-      if (info.id === this.client.username && info.password === this.client.password) {
-        localStorage.setItem('user-info', JSON.stringify(this.client));
-        this.router.navigateByUrl('/client');
-      } else if (info.id === this.employee.username && info.password === this.employee.password) {
-        localStorage.setItem('user-info', JSON.stringify(this.employee));
-        this.router.navigateByUrl('/employee');
-      } else {
-        this.showMsg('Login Error!', 'Invalid username or password', 'error');
-      }
+      const userInfo = {
+        username: info.id,
+        password: info.password
+      };
+
+      const response = this.authService.login(userInfo);
+      response.subscribe((data) => {
+        if (data.message) {
+          this.showMsg('Login Error!', data.msg, 'error');
+        } else if (data.jsonResponse) {
+          const user = data.jsonResponse;
+          localStorage.setItem('user-info', JSON.stringify(user));
+          if (user.rol === 1) {
+            this.router.navigateByUrl('/client');
+          } else {
+            this.router.navigateByUrl('/employee');
+          }
+        } else {
+          this.showMsg('Login Error!', 'Unknown error', 'error');
+        }
+      });
     }
   }
 
