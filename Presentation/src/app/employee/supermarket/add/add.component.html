@@ -142,6 +142,21 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
+                    <label class="form-control-label" for="input-schedule">Description</label>
+                    <textarea type="text" id="input-description" class="form-control form-control-alternative" cols="30" rows="5"
+                      name="description" [ngModel]="supermarket.description" required #description="ngModel" placeholder="Description"></textarea>
+                  </div>
+                  <div>
+                    <small [hidden]="description.valid || (description.pristine && !f.submitted)" class="text-danger">
+                      Description is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-schedule">Rating</label>
                     <bar-rating [(rate)]="supermarket.rating" [max]="5"></bar-rating>
                   </div>
