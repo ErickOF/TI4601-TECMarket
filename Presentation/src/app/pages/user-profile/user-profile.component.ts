@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -7,12 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
   public userinfo;
+  public defaultAvatar = 'assets/img/theme/avatar.png';
 
   constructor() {
     this.userinfo = JSON.parse(localStorage.getItem('user-info'));
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  private showMsg(msgTitle, msg, type) {
+    Swal.fire(msgTitle, msg, type);
   }
 
+  public update(isValid, form) {
+    if (isValid) {
+      this.showMsg('Success!', 'Your profile was updated!', 'success');
+    }
+  }
 }
