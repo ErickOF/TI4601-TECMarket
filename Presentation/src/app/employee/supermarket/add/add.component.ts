@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 declare const google: any;
 
@@ -14,16 +16,35 @@ export class AddComponent implements OnInit {
     latitude: 9.867769,
     longitude: -83.904424
   };
+  public supermarket = {
+    localName: 'Walmart',
+    address: 'De la Basílica de los Ángeles 800m camino a Paraíso frente a la Bomba Los Ángeles, 10, Provincia de Cartago',
+    phone: '1-800-925-6278',
+    schedule: '9:00am-10:00pm',
+    website: 'https://www.walmart.com/',
+    rating: 0
+  };
   public map;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.updateMap(this.location.latitude, this.location.longitude);
   }
 
+  public save(isValid, info) {
+    if (isValid && this.searched) {
+      this.showMsg('Success!', 'Supermarket was added', 'success');
+      this.router.navigateByUrl('/employee/view-supermarkets');
+    }
+  }
+
   public search() {
     this.searched = true;
+  }
+
+  private showMsg(msgTitle, msg, type) {
+    Swal.fire(msgTitle, msg, type);
   }
 
   private updateMap(lat, lng) {
@@ -31,7 +52,7 @@ export class AddComponent implements OnInit {
       latitude: lat,
       longitude: lng
     };
-    console.log('Update', this.location, lat, lng);
+
     this.map = document.getElementById('map-canvas');
 
     const myLatlng = new google.maps.LatLng(this.location.latitude, this.location.longitude);

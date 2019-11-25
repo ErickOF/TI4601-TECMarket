@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 import { EmployeeLayoutRoutes } from './employee-layout.routing';
 
@@ -14,7 +15,8 @@ import { ViewComponent } from './../../employee/supermarket/view/view.component'
     CommonModule,
     RouterModule.forChild(EmployeeLayoutRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BarRatingModule
   ],
   declarations: [
     AddComponent,
