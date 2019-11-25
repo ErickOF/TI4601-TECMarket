@@ -3,4 +3,5 @@ export class Constants {
     public static login = 'login';
     public static createClient = 'register';
     public static allStores = 'storeall';
+    public static createStore = 'store';
 }

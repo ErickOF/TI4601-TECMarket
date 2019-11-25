@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+import { StoreService } from './../../../services/store/store.service';
+
 declare const google: any;
 
 @Component({
@@ -29,7 +31,8 @@ export class AddComponent implements OnInit {
   };
   public map;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private storeService: StoreService) { }
 
   ngOnInit() {
     this.updateMap(this.location.latitude, this.location.longitude);
@@ -37,8 +40,32 @@ export class AddComponent implements OnInit {
 
   public save(isValid, info) {
     if (isValid && this.searched) {
-      this.showMsg('Success!', 'Supermarket was added', 'success');
-      this.router.navigateByUrl('/employee/view-supermarkets');
+      const store = {
+        id_store: info.localName,
+        name: info.localName,
+        description: info.description,
+        address: info.address,
+        lat: info.latitude,
+        long: info.longitude,
+        img: 'no image',
+        phone: info.phone,
+        rating: '0',
+        schedule: info.schedule,
+        website: info.website,
+        products: []
+      };
+
+      const response = this.storeService.createStore(store);
+      response.subscribe((data) => {
+        if (data.jsonResponse) {
+          this.showMsg('Success!', 'Store was added', 'success');
+          this.router.navigateByUrl('/employee/view-supermarkets');
+        } else {
+          this.showMsg('Error!', 'Unknown error.', 'error');
+        }
+      }, (error) => {
+        this.showMsg('Connection Error!', 'Try it later!', 'error');
+      });
     }
   }
 

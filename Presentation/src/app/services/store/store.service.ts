@@ -17,6 +17,10 @@ export class StoreService {
 
   constructor(private http: HttpClient) { }
 
+  public createStore(store) {
+    return this.http.post<any>(Constants.url + Constants.createStore, store, this.httpOptions);
+  }
+
   public getAllStores() {
     return this.http.get<any>(Constants.url + Constants.allStores, this.httpOptions);
   }
