@@ -11,6 +11,8 @@ import { EditComponent } from './../../employee/supermarket/edit/edit.component'
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
 import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-purchases/stores-w-purchases.component';
 
+import { SearchComponent } from './../../employee/clients/search/search.component';
+
 
 @NgModule({
   imports: [
@@ -24,7 +26,8 @@ import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-
     AddComponent,
     EditComponent,
     StoreWPurchasesComponent,
-    ViewComponent
+    ViewComponent,
+    SearchComponent
   ]
 })
 export class EmployeeLayoutModule { }

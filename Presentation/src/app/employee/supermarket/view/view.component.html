@@ -17,6 +17,7 @@
           <table id="datatable" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th class="text-center">ID Store</th>
                 <th class="text-center">Local name</th>
                 <th class="text-center">Phone number</th>
                 <th class="text-center">Schedule</th>
@@ -28,12 +29,13 @@
             </thead>
             <tbody>
               <tr class="text-align-center-center" *ngFor="let supermarket of supermarkets">
-                <td class="text-center">{{ supermarket.localName}}</td>
+                <td class="text-center">{{ supermarket.id_store}}</td>
+                <td class="text-center">{{ supermarket.name}}</td>
                 <td class="text-center">{{ supermarket.phone}}</td>
                 <td class="text-center">{{ supermarket.schedule}}</td>
                 <td class="text-center">{{ supermarket.website}}</td>
-                <td class="text-center">{{ supermarket.latitude}}</td>
-                <td class="text-center">{{ supermarket.longitude}}</td>
+                <td class="text-center">{{ supermarket.lat}}</td>
+                <td class="text-center">{{ supermarket.long}}</td>
                 <td class="text-center">
                   <button class="btn btn-link btn-icon btn-sm edit" (click)="edit(row)"><i class="fa fa-edit"></i></button>
                   <button class="btn btn-link btn-icon btn-sm remove" (click)="delete(row)"><i class="fa fa-times"></i></button>

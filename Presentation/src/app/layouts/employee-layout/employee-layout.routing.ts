@@ -5,6 +5,8 @@ import { EditComponent } from './../../employee/supermarket/edit/edit.component'
 import { StoreWPurchasesComponent } from './../../employee/supermarket/stores-w-purchases/stores-w-purchases.component';
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
 
+import { SearchComponent } from './../../employee/clients/search/search.component';
+
 
 export const EmployeeLayoutRoutes: Routes = [
     {
@@ -27,5 +29,9 @@ export const EmployeeLayoutRoutes: Routes = [
     {
         path: 'edit-supermarket',
         component: EditComponent
+    },
+    {
+        path: 'search-client',
+        component: SearchComponent
     }
 ];

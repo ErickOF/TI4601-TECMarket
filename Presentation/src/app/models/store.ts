@@ -1,6 +1,8 @@
 import { Product } from './product';
 
+
 export interface Store {
+    _id: string;
     id_store: string;
     name: string;
     description: string;
@@ -13,4 +15,7 @@ export interface Store {
     schedule: string;
     website: string;
     products: Product[];
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
 }

@@ -1,0 +1,113 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid"></div>
+</div>
+
+<!--
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">History Sales</h3>
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-control form-control-alternative" id="client" #client
+            (change)="selectClient(client.value)" required>
+            <option value="">fofo123</option>
+            <option *ngFor="let client of clients" [value]="client.idClient">
+              {{ client.Name }}</option>
+          </select>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="table-responsive">
+          <table id="datatable" class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center">ID Sale</th>
+                <th class="text-center">Store</th>
+                <th class="text-center">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-align-center-center" *ngFor="let sale of sales">
+                <td class="text-center">{{ sale.id_sale }}</td>
+                <td class="text-center">{{ sale.store }}</td>
+                <td class="text-center">{{ sale.date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+<!--
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Top Sales</h3>
+        </div>
+
+        <div class="table-responsive">
+          <table id="datatable" class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center">Store</th>
+                <th class="text-center">Sales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-align-center-center" *ngFor="let sale of sales">
+                <td class="text-center">{{ sale.store }}</td>
+                <td class="text-center">{{ sale.sales }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Similar people</h3>
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-control form-control-alternative" id="client" #client
+            (change)="selectClient(client.value)" required>
+            <option value="">Pato Test User</option>
+            <option *ngFor="let client of clients" [value]="client.idClient">
+              {{ client.Name }}</option>
+          </select>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="table-responsive">
+          <table id="datatable" class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center">User ID</th>
+                <th class="text-center">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-align-center-center" *ngFor="let sale of sales">
+                <td class="text-center">{{ sale.user_id }}</td>
+                <td class="text-center">{{ sale.name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

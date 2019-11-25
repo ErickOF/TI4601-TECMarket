@@ -10,34 +10,19 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Supermarket</h3>
+          <h3 class="mb-0">Stores with sales</h3>
         </div>
   
         <div class="table-responsive">
           <table id="datatable" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th class="text-center">Local name</th>
-                <th class="text-center">Phone number</th>
-                <th class="text-center">Schedule</th>
-                <th class="text-center">Website</th>
-                <th class="text-center">Latitude</th>
-                <th class="text-center">Longitude</th>
-                <th class="text-center">Actions</th>
+                <th class="text-center">Store</th>
               </tr>
             </thead>
             <tbody>
               <tr class="text-align-center-center" *ngFor="let supermarket of supermarkets">
-                <td class="text-center">{{ supermarket.localName}}</td>
-                <td class="text-center">{{ supermarket.phone}}</td>
-                <td class="text-center">{{ supermarket.schedule}}</td>
-                <td class="text-center">{{ supermarket.website}}</td>
-                <td class="text-center">{{ supermarket.latitude}}</td>
-                <td class="text-center">{{ supermarket.longitude}}</td>
-                <td class="text-center">
-                  <button class="btn btn-link btn-icon btn-sm edit" (click)="edit(row)"><i class="fa fa-edit"></i></button>
-                  <button class="btn btn-link btn-icon btn-sm remove" (click)="delete(row)"><i class="fa fa-times"></i></button>
-                </td>
+                <td class="text-center">{{ supermarket }}</td>
               </tr>
             </tbody>
           </table>
