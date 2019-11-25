@@ -1,0 +1,174 @@
+<div class="header d-flex align-items-center"
+  style="min-height: 300px; background-image: url(assets/img/theme/profile-cover3.png); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <h3 class="mb-0">Add Supermarket</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form #f="ngForm">
+            <h6 class="heading-small text-muted mb-4">Location</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-latitude">Latitude</label>
+                    <input type="text" id="input-latitude" class="form-control form-control-alternative" name="latitude"
+                      [ngModel]="location.latitude" required #latitude="ngModel"
+                      (change)="updateMap(latitude.value, longitude.value)">
+                  </div>
+                  <div>
+                    <small [hidden]="latitude.valid || (latitude.pristine && !f.submitted)" class="text-danger">
+                      Latitude is required
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-longitude">Longitude</label>
+                    <input type="text" id="input-longitude" class="form-control form-control-alternative"
+                      name="longitude" [ngModel]="location.longitude" required #longitude="ngModel"
+                      (change)="updateMap(latitude.value, longitude.value)">
+                  </div>
+                  <div>
+                    <small [hidden]="longitude.valid || (longitude.pristine && !f.submitted)" class="text-danger">
+                      Longitude is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Address</label>
+                    <input type="text" id="input-name" class="form-control form-control-alternative" name="address"
+                      [ngModel]="supermarket.address" required #address="ngModel" placeholder="Address">
+                  </div>
+                  <small [hidden]="address.valid || (address.pristine && !f.submitted)" class="text-danger">
+                    Address is required
+                  </small>
+                </div>
+              </div>
+
+              <button class="btn btn-info" (click)="search()">Search</button>
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="row">
+              <div class="col">
+                <div class="card shadow border-0">
+                  <div id="map-canvas" class="map-canvas" data-lat="9.867769" data-lng="83.904424"
+                    style="height: 300px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading-small text-muted mb-4">General information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-local-name">Local Name</label>
+                    <input type="text" id="input-local-name" class="form-control form-control-alternative"
+                      name="localName" [ngModel]="supermarket.localName" required #localName="ngModel"
+                      placeholder="Local Name">
+                  </div>
+                  <div>
+                    <small [hidden]="localName.valid || (localName.pristine && !f.submitted)" class="text-danger">
+                      Local name is required
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">International phone number</label>
+                    <input type="text" id="input-phone" class="form-control form-control-alternative" name="phone"
+                      [ngModel]="supermarket.phone" required #phone="ngModel" placeholder="International phone number">
+                  </div>
+                  <div>
+                    <small [hidden]="phone.valid || (phone.pristine && !f.submitted)" class="text-danger">
+                      Phone number is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-schedule">Schedule</label>
+                    <input type="text" id="input-schedule" class="form-control form-control-alternative" name="schedule"
+                      [ngModel]="supermarket.schedule" required #schedule="ngModel" placeholder="Schedule">
+                  </div>
+                  <div>
+                    <small [hidden]="schedule.valid || (schedule.pristine && !f.submitted)" class="text-danger">
+                      Schedule is required
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-website">Website</label>
+                    <input type="text" id="input-website" class="form-control form-control-alternative" name="website"
+                      [ngModel]="supermarket.website" required #website="ngModel" placeholder="Website">
+                  </div>
+                  <div>
+                    <small [hidden]="website.valid || (website.pristine && !f.submitted)" class="text-danger">
+                      Website is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-schedule">Description</label>
+                    <textarea type="text" id="input-description" class="form-control form-control-alternative" cols="30"
+                      rows="5" name="description" [ngModel]="supermarket.description" required #description="ngModel"
+                      placeholder="Description"></textarea>
+                  </div>
+                  <div>
+                    <small [hidden]="description.valid || (description.pristine && !f.submitted)" class="text-danger">
+                      Description is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-schedule">Rating</label>
+                    <bar-rating [(rate)]="supermarket.rating" [max]="5"></bar-rating>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <button class="btn btn-add" (click)="save(f.valid, f.value)">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

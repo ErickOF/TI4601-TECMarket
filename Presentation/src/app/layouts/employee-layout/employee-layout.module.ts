@@ -7,6 +7,7 @@ import { BarRatingModule } from 'ngx-bar-rating';
 import { EmployeeLayoutRoutes } from './employee-layout.routing';
 
 import { AddComponent } from './../../employee/supermarket/add/add.component';
+import { EditComponent } from './../../employee/supermarket/edit/edit.component';
 import { ViewComponent } from './../../employee/supermarket/view/view.component';
 
 
@@ -20,6 +21,7 @@ import { ViewComponent } from './../../employee/supermarket/view/view.component'
   ],
   declarations: [
     AddComponent,
+    EditComponent,
     ViewComponent
   ]
 })

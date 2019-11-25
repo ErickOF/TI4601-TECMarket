@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 declare var $: any;
+
 
 declare interface DataTable {
   headerRow: string[];
@@ -15,9 +18,8 @@ declare interface DataTable {
 export class ViewComponent implements OnInit, AfterViewInit {
   public supermarkets: any[];
   public table: DataTable;
-  public dataTable: DataTable;
 
-  constructor() {
+  constructor(private router: Router) {
     this.createTable();
   }
 
@@ -53,10 +55,18 @@ export class ViewComponent implements OnInit, AfterViewInit {
         latitude: 9.867769,
         longitude: -83.904424
       }
-    ]
+    ];
   }
 
-  public delete(row) { }
+  public delete(row) {
+    this.showMsg('Success!', 'Supermarket was deleted', 'success');
+  }
 
-  public edit(row) { }
+  public edit(row) {
+    this.router.navigateByUrl('/employee/edit-supermarket');
+  }
+
+  private showMsg(msgTitle, msg, type) {
+    Swal.fire(msgTitle, msg, type);
+  }
 }
