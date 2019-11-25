@@ -9,4 +9,5 @@ export class Constants {
     public static getTop5 = 'getTopFive';
     public static getUserSales = 'getUsersSales/';
     public static getSimilarClients = 'getSimilarPeople/';
+    public static getAllSales = 'salesByUser/';
 }

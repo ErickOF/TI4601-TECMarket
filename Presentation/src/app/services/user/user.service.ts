@@ -20,4 +20,8 @@ export class UserService {
   public createClient(info) {
     return this.http.post<any>(Constants.url + Constants.createClient, info, this.httpOptions);
   }
+
+  public getAllSales(user) {
+    return this.http.get<any>(Constants.url + Constants.getAllSales + user, this.httpOptions);
+  }
 }
