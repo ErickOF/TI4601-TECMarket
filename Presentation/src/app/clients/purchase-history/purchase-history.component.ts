@@ -16,7 +16,8 @@ export class PurchaseHistoryComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.id = JSON.parse(localStorage.getItem('user-info')).user_id;
+    this.id = JSON.parse(localStorage.getItem('user-info')).username;
+    console.log(this.id)
     this.loadPurchases();
   }
 
