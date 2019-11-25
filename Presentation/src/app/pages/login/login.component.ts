@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         } else if (data.jsonResponse) {
           const user = data.jsonResponse;
           localStorage.setItem('user-info', JSON.stringify(user));
-          if (user.rol === 1) {
+          if (user.rol === 3) {
             this.router.navigateByUrl('/client');
           } else {
             this.router.navigateByUrl('/employee');
@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         } else {
           this.showMsg('Login Error!', 'Unknown error', 'error');
         }
+      }, (error) => {
+          this.showMsg('Connection Error!', 'Try it later!', 'error');
       });
     }
   }

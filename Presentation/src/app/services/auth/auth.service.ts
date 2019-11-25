@@ -15,8 +15,7 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   public login(userInfo) {
     return this.http.post<any>(Constants.url + Constants.login, userInfo, this.httpOptions);

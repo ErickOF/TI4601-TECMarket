@@ -47,9 +47,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     const userInfo = JSON.parse(localStorage.getItem('user-info'));
-    if (userInfo.rol === 1) {
+    if (userInfo.rol === 3) {
       this.menuItems = CLIENT.filter(menuItem => menuItem);
-    } else if (userInfo.rol === 2) {
+    } else if (userInfo.rol === 1 || userInfo.rol === 2) {
       this.menuItems = EMPLOYEE.filter(menuItem => menuItem);
     } else {
       this.menuItems = ROUTES.filter(menuItem => menuItem);
