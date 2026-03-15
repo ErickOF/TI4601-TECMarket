@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', false);
 
 const userSchema = new Schema({
   user_id: {

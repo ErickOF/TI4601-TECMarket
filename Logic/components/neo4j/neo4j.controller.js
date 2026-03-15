@@ -1,4 +1,4 @@
-const neo4j = require('neo4j-driver').v1;
+const neo4j = require('neo4j-driver');
 const Store = require('../store/store.dao');
 const User = require('../auth/auth.dao');
 const Sale = require('../sales/sales.dao');
@@ -7,6 +7,27 @@ const driver = neo4j.driver(
     'bolt://localhost:7687',
     neo4j.auth.basic('neo4j', 'pato123')
 )
+
+function runWithSubscribe(session, query) {
+    return {
+        subscribe: ({ onNext, onCompleted, onError }) => {
+            session.run(query)
+                .then((result) => {
+                    if (onNext) {
+                        result.records.forEach((record) => onNext(record));
+                    }
+                    if (onCompleted) {
+                        onCompleted(result);
+                    }
+                })
+                .catch((error) => {
+                    if (onError) {
+                        onError(error);
+                    }
+                });
+        }
+    };
+}
 
 exports.migrateData = (req, res, next) => {
     /* Neo4j*/
@@ -25,7 +46,7 @@ exports.migrateData = (req, res, next) => {
                     query = query + ", "
                 }
             }
-            session.run(query).subscribe({
+            runWithSubscribe(session, query).subscribe({
                 onNext: function (record) {
                     //console.log('test')
                 },
@@ -60,7 +81,7 @@ function migrateDataAux(res) {
                     query = query + ", "
                 }
             }
-            session.run(query).subscribe({
+            runWithSubscribe(session, query).subscribe({
                 onNext: function (record) {
                 },
                 onCompleted: function (data) {
@@ -93,7 +114,7 @@ function migrateDataAux2(res) {
                 WHERE p.user_id='${resp[i]['id_user']}' AND s.id_store='${resp[i]['id_store']}' AND sale.id_sale='${resp[i]['id_sale']}' \n
                 CREATE (sale)-[r:BOUGHT_BY]->(p) \n
                 CREATE (sale)-[r1:BOUGHT_IN]->(s)`
-                session.run(query).subscribe({
+                runWithSubscribe(session, query).subscribe({
                     onNext: function (record) {
                     },
                     onCompleted: function (data) {
@@ -116,7 +137,7 @@ exports.getUsersSales = (req, res, next) => {
     let query = `MATCH (a:Sale{id_user:'${req.params.id_user}'})
     RETURN a.id_sale, a.id_store, a.datetime`
     let ress = []
-    session.run(query).subscribe({
+    runWithSubscribe(session, query).subscribe({
         onNext: function (record) {
             var d={
                 id_sale:record['_fields'][0],
@@ -140,7 +161,7 @@ exports.getStoresWithSales = (req, res, next) => {
     var session = driver.session()
     let query = `match (n:Store)<-[:BOUGHT_IN]-(Sale) return distinct n.id_store`
     let ress=[];
-    session.run(query).subscribe({
+    runWithSubscribe(session, query).subscribe({
         onNext: function (record) {
             ress.push(record['_fields'][0]);
         },
@@ -160,7 +181,7 @@ exports.getTopFive = (req, res, next) => {
     let query = `MATCH (s:Sale)-[:BOUGHT_IN]->(st:Store)
     RETURN st.name as store, size(collect(s.id_sale)) AS sales`
     let ress = [];
-    session.run(query).subscribe({
+    runWithSubscribe(session, query).subscribe({
         onNext: function (record) {
             var d={
                 store:record['_fields'][0],
@@ -185,7 +206,7 @@ exports.getSimilarPeople = (req, res, next) => {
     WHERE exists((place)<-[:BOUGHT_IN]-(:Sale)-[:BOUGHT_BY]->(:Client{user_id:'${req.params.id_user}'}))
     RETURN distinct p.name, p.user_id`
     let ress = [];
-    session.run(query).subscribe({
+    runWithSubscribe(session, query).subscribe({
         onNext: function (record) {
             let d={
                 name:record['_fields'][0],
