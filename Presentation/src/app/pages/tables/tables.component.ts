@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tables',
+  standalone: false,
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.scss']
 })

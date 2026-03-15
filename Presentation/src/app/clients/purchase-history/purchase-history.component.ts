@@ -4,6 +4,7 @@ import { UserService } from './../../services/user/user.service'
 
 @Component({
   selector: 'app-purchase-history',
+  standalone: false,
   templateUrl: './purchase-history.component.html',
   styleUrls: ['./purchase-history.component.scss']
 })

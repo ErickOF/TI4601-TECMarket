@@ -13,6 +13,7 @@ declare interface DataTable {
 
 @Component({
   selector: 'app-similar-clients',
+  standalone: false,
   templateUrl: './similar-clients.component.html',
   styleUrls: ['./similar-clients.component.scss']
 })

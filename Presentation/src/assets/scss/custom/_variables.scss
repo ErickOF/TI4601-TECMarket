@@ -624,7 +624,8 @@ $custom-control-indicator-disabled-bg:          $gray-200 !default;
 $custom-control-label-disabled-color:           $gray-600 !default;
 
 $custom-checkbox-indicator-border-radius:       $border-radius-sm !default;
-//$custom-checkbox-indicator-icon-checked:        str-replace(url("data:image/svg+xml !default;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$custom-checkbox-indicator-icon-checked:       url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e") !default;
+$custom-radio-indicator-icon-checked:          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !default;
 
 // Custom toggle
 
@@ -834,7 +835,7 @@ $close-font-size:                   $font-size-base * 1.5 !default;
 $close-font-weight:                 $font-weight-bold !default;
 $close-bg:                          transparent !default;
 $close-hover-bg:                    transparent !default;
-$close-color:                       rgba(0, 0, 0, .6) !default !default;
+$close-color:                       rgba(0, 0, 0, .6) !default;
 $close-hover-color:                 rgba(0, 0, 0, .9) !default;
 $close-text-shadow:                 none !default;
 
@@ -1006,4 +1007,4 @@ $footer-heading-font-size: $font-size-sm !default;
 
 // Import Bootstrap variable defaults
 
-@import "~bootstrap/scss/variables";
+@import "bootstrap/scss/variables";

@@ -12,6 +12,7 @@ declare interface DataTable {
 
 @Component({
   selector: 'app-stores-w-purchases',
+  standalone: false,
   templateUrl: './stores-w-purchases.component.html',
   styleUrls: ['./stores-w-purchases.component.scss']
 })

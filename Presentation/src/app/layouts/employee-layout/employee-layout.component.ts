@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-employee-layout',
+    standalone: false,
     templateUrl: './employee-layout.component.html',
     styleUrls: ['./employee-layout.component.scss']
 })

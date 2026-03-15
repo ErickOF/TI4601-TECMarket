@@ -8,6 +8,7 @@ declare const google: any;
 
 @Component({
   selector: 'app-add',
+  standalone: false,
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
@@ -77,7 +78,7 @@ export class AddComponent implements OnInit {
     Swal.fire(msgTitle, msg, type);
   }
 
-  private updateMap(lat, lng) {
+  public updateMap(lat, lng) {
     this.location = {
       latitude: lat,
       longitude: lng

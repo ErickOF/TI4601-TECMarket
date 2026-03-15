@@ -3,6 +3,7 @@ declare const google: any;
 
 @Component({
   selector: 'app-maps',
+  standalone: false,
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss']
 })

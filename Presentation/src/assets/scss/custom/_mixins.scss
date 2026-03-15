@@ -4,7 +4,27 @@
 
 // Bootstrap default mixins
 
-@import "~bootstrap/scss/mixins";
+@import "bootstrap/scss/mixins";
+
+// Bootstrap 4 compatibility mixins used by the Argon theme.
+@mixin hover {
+	&:hover {
+		@content;
+	}
+}
+
+@mixin hover-focus {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
+
+@mixin text-emphasis-variant($parent, $color) {
+	#{$parent} {
+		color: $color !important;
+	}
+}
 
 
 // Custom mixins

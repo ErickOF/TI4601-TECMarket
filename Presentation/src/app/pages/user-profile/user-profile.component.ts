@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-profile',
+  standalone: false,
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })

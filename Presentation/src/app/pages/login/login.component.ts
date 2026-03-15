@@ -7,10 +7,16 @@ import { AuthService } from './../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: false,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  public login = {
+    id: '',
+    password: ''
+  };
+
   private client = {
     username: 'CErickOF',
     name: 'Erick Obregon',
@@ -41,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() { }
 
-  public login(isValid, info) {
+  public submitLogin(isValid, info) {
     if (isValid) {
       const userInfo = {
         username: info.id,

@@ -7,6 +7,7 @@ declare const google: any;
 
 @Component({
   selector: 'app-edit',
+  standalone: false,
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
@@ -52,7 +53,7 @@ export class EditComponent implements OnInit {
     Swal.fire(msgTitle, msg, type);
   }
 
-  private updateMap(lat, lng) {
+  public updateMap(lat, lng) {
     this.location = {
       latitude: lat,
       longitude: lng

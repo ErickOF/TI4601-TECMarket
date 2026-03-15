@@ -37,6 +37,7 @@ export const EMPLOYEE: RouteInfo[] = [
 
 @Component({
   selector: 'app-sidebar',
+  standalone: false,
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })

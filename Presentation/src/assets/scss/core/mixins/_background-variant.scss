@@ -5,7 +5,8 @@
     }
     a#{$parent},
     button#{$parent} {
-        @include hover-focus {
+        &:hover,
+        &:focus {
             background-color: darken($color, 10%) !important;
         }
     }
@@ -13,7 +14,7 @@
 
 @mixin bg-gradient-variant($parent, $color) {
     #{$parent} {
-        background: linear-gradient(87deg, rgb(102, 58, 58) 0, adjust-hue(rgb(30, 141, 126), 25%) 100%) !important;
+        background: linear-gradient(87deg, rgb(102, 58, 58) 0, adjust-hue(rgb(30, 141, 126), 25deg) 100%) !important;
     }
 }
 
@@ -23,7 +24,8 @@
     }
     a#{$parent},
     button#{$parent} {
-        @include hover-focus {
+        &:hover,
+        &:focus {
             background-color: darken(rgba($color, $translucent-color-opacity), 12%) !important;
         }
     }

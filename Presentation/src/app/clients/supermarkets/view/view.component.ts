@@ -16,6 +16,7 @@ declare interface DataTable {
 
 @Component({
   selector: 'app-view',
+  standalone: false,
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
 })

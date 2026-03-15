@@ -4,7 +4,29 @@
 
 // Bootstrap default functions
 
-@import "~bootstrap/scss/functions";
+@import "bootstrap/scss/functions";
+
+// Bootstrap 4 compatibility helpers used by the Argon theme.
+// Keep them at top-level because Dart Sass disallows @function in control directives.
+@function theme-color($key) {
+	@if map-has-key($theme-colors, $key) {
+		@return map-get($theme-colors, $key);
+	}
+
+	@if map-has-key($theme-colors, "primary") {
+		@return map-get($theme-colors, "primary");
+	}
+
+	@return #5e72e4;
+}
+
+@function color-yiq($color, $dark: #111827, $light: #ffffff) {
+	@if lightness($color) > 50% {
+		@return $dark;
+	}
+
+	@return $light;
+}
 
 
 // Retrieve color Sass maps

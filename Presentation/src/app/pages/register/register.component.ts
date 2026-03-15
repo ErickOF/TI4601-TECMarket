@@ -7,17 +7,27 @@ import { UserService } from './../../services/user/user.service';
 
 @Component({
   selector: 'app-register',
+  standalone: false,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  public register = {
+    name: '',
+    username: '',
+    id: '',
+    phone: '',
+    birthday: '',
+    email: '',
+    password: ''
+  };
 
   constructor(private userService: UserService,
     private router: Router) { }
 
   ngOnInit() { }
 
-  public register(isValid, info) {
+  public submitRegister(isValid, info) {
     if (isValid) {
       const userInfo = {
         user_id: info.id,
