@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 // core components
 import {
-  chartOptions,
-  parseOptions,
+  Chart,
   chartExample1,
   chartExample2
 } from "../../variables/charts";
@@ -15,13 +13,14 @@ import {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
+  public datasets: number[][];
+  public data: number[];
+  public salesChart?: Chart<'line', number[], string>;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  private ordersChart?: Chart<'bar', number[], string>;
 
   constructor() { }
 
@@ -34,33 +33,30 @@ export class DashboardComponent implements OnInit {
     this.data = this.datasets[0];
 
 
-    var chartOrders = document.getElementById('chart-orders');
+    const chartOrders = document.getElementById('chart-orders') as HTMLCanvasElement | null;
 
-    parseOptions(Chart, chartOptions());
+    if (chartOrders) {
+      this.ordersChart = new Chart(chartOrders, chartExample2);
+    }
 
+    const chartSales = document.getElementById('chart-sales') as HTMLCanvasElement | null;
 
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
+    if (chartSales) {
+      this.salesChart = new Chart(chartSales, chartExample1);
+    }
   }
 
-
-
-
-
   public updateOptions() {
+    if (!this.salesChart) {
+      return;
+    }
+
     this.salesChart.data.datasets[0].data = this.data;
     this.salesChart.update();
   }
 
+  ngOnDestroy() {
+    this.ordersChart?.destroy();
+    this.salesChart?.destroy();
+  }
 }
